@@ -9,13 +9,13 @@ namespace Common.Managers
     public class SceneManager : SingletonMonoBehaviour<SceneManager>
     {
         //Key: Scene Name in Const class value:Top object for each scene
-        Dictionary<string, GameObject> activeScenes = new Dictionary<string, GameObject>();
+        Dictionary<string, SceneManagerBase> activeScenes = new Dictionary<string, SceneManagerBase>();
 
-        public void AddActiveScene(string key, GameObject topCanvas)
+        public void AddActiveScene(string key, SceneManagerBase sceneManager)
         {
             if (!activeScenes.ContainsKey(key))
             {
-                activeScenes.Add(key, topCanvas);
+                activeScenes.Add(key, sceneManager);
             }
         }
 
@@ -31,12 +31,12 @@ namespace Common.Managers
         {
             if (activeScenes.ContainsKey(currentScene))
             {
-                activeScenes[currentScene].SetActive(false);
+                activeScenes[currentScene].OnClose();
             }
 
             if (activeScenes.ContainsKey(nextScene))
             {
-                activeScenes[nextScene].SetActive(true);
+                activeScenes[nextScene].OnOpen();
             }
             else
             {

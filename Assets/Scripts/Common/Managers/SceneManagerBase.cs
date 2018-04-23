@@ -2,7 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManagerBase : MonoBehaviour
+public abstract class SceneManagerBase : MonoBehaviour
 {
+    [SerializeField]
+    protected GameObject topCanvas;
 
+    public virtual void OnOpen()
+    {
+        topCanvas.SetActive(true);
+    }
+
+    public virtual void OnClose()
+    {
+        topCanvas.SetActive(false);
+    }
 }

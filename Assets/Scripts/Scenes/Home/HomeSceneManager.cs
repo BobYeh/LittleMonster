@@ -4,18 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using Common.Managers;
 
-public class HomeSceneManager : MonoBehaviour
+public class HomeSceneManager : SceneManagerBase
 {
     [SerializeField]
     Text playerID;
 
-    private void Awake()
+    void Awake()
     {
-        playerID.text = string.Format("PlayerID: {0}", PlayerDataManager.Instance.GetPlayerId());
+        UpdatePlayerID();
+    }
+
+    public override void OnOpen()
+    {
+        base.OnOpen();
+        UpdatePlayerID();
     }
 
     public void OnClickedBackToTitleButton()
     {
         SceneManager.Instance.SwitchScene(SceneName.HOME, SceneName.TITLE);
+    }
+
+    public void UpdatePlayerID()
+    {
+        playerID.text = string.Format("PlayerID: {0}", PlayerDataManager.Instance.GetPlayerId());
     }
 }

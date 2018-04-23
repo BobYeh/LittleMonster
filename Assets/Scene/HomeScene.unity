@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: HomeScene
-  topCanvas: {fileID: 1329044675}
+  sceneManager: {fileID: 1174485416}
 --- !u!114 &1174485416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52015ab96fcecb841914ba393fcb94ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topCanvas: {fileID: 1329044675}
   playerID: {fileID: 870229738}
 --- !u!4 &1174485417
 Transform:

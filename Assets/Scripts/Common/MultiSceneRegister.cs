@@ -8,10 +8,10 @@ public class MultiSceneRegister : MonoBehaviour
     [SerializeField]
     string key;
     [SerializeField]
-    GameObject topCanvas;
+    SceneManagerBase sceneManager;
 
     private void Awake()
     {
-        SceneManager.Instance.AddActiveScene(key, topCanvas);
+        SceneManager.Instance.AddActiveScene(key, sceneManager);
     }
 }
