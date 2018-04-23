@@ -17,6 +17,6 @@ public class PlayerDataManager :  SingletonMonoBehaviour<PlayerDataManager>
 
     public bool FirstTimeLogin()
     {
-        return PlayerPrefs.HasKey(GameKey.PLAYER_ID);
+        return !PlayerPrefs.HasKey(GameKey.PLAYER_ID);
     }
 }
