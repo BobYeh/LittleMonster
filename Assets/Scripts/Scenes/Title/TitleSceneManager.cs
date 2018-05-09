@@ -54,7 +54,8 @@ public class TitleSceneManager : SceneManagerBase
     {
         yield return http.Post(API.RegisterAccount(), (request) =>
         {
-            playerId = Convert.ToInt32(request.downloadHandler.text);
+            var userData = JsonUtility.FromJson<UserEntity>(request.downloadHandler.text);
+            playerId = userData.playerId;
             StartCoroutine(TryLogin(playerId));
         });
     }
