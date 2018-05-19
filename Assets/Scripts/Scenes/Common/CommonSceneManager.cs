@@ -5,8 +5,16 @@ using Common.Managers;
 
 public class CommonSceneManager : SceneManagerBase
 {
-    private void Awake()
+    protected override void Awake()
     {
-        SceneManager.Instance.Hover(SceneName.TITLE);
+        StartCoroutine(OpenTitleScene());
+    }
+
+    IEnumerator OpenTitleScene()
+    {
+        if (!SceneManager.Instance.IsGroupLoaded(SceneGroup.TitleGroup))
+            yield return SceneManager.Instance.LoadSceneGroup(SceneGroup.TitleGroup);
+
+        SceneManager.Instance.SwitchScene("", SceneName.TITLE);
     }
 }

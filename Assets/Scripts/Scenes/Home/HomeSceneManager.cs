@@ -9,8 +9,9 @@ public class HomeSceneManager : SceneManagerBase
     [SerializeField]
     Text playerID;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         UpdatePlayerID();
     }
 

@@ -7,6 +7,11 @@ public abstract class SceneManagerBase : MonoBehaviour
     [SerializeField]
     protected GameObject topCanvas;
 
+    protected virtual void Awake()
+    {
+        topCanvas.SetActive(false);
+    }
+
     public virtual void OnOpen()
     {
         topCanvas.SetActive(true);
