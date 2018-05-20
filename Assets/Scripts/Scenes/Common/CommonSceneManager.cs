@@ -15,6 +15,6 @@ public class CommonSceneManager : SceneManagerBase
         if (!SceneManager.Instance.IsGroupLoaded(SceneGroup.TitleGroup))
             yield return SceneManager.Instance.LoadSceneGroup(SceneGroup.TitleGroup);
 
-        SceneManager.Instance.SwitchScene("", SceneName.TITLE);
+        SceneManager.Instance.OpenScene(SceneName.TITLE);
     }
 }

@@ -45,14 +45,9 @@ public class TitleSceneManager : SceneManagerBase
         StartCoroutine(RegisterAccount());
     }
 
-    public IEnumerator SwitchToHomeScene()
+    public void SwitchToHomeScene()
     {
-        if (!SceneManager.Instance.IsGroupLoaded(SceneGroup.HomeGroup))
-        {
-            yield return SceneManager.Instance.LoadSceneGroup(SceneGroup.HomeGroup);
-        }
-
-        SceneManager.Instance.SwitchScene(SceneName.TITLE, SceneName.HOME);
+        StartCoroutine(SceneManager.Instance.SwitchSceneGroup(SceneGroup.TitleGroup, SceneGroup.HomeGroup, SceneName.HOME));
     }
 
     IEnumerator RegisterAccount()
@@ -72,7 +67,7 @@ public class TitleSceneManager : SceneManagerBase
             if (request.downloadHandler.text == "Login Success")
             {
                 PlayerDataManager.Instance.SavePlayerId(playerId);
-                StartCoroutine(SwitchToHomeScene());
+                SwitchToHomeScene();
             }
         });
     }

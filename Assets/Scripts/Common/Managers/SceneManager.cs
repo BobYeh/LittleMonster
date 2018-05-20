@@ -20,9 +20,9 @@ namespace Common.Managers
         Dictionary<AsyncOperation, string> loadingScenes = new Dictionary<AsyncOperation, string>();
         List<SceneGroup> loadedGroup = new List<SceneGroup>();
 
-        int numberOfScenesNeedToBeLoad;
-        int numberOfLoadedScene;
-        
+        int numberOfScenesToBeHandle;
+        int numberOfHandledScene;
+
 
         public void AddActiveScene(string key, SceneManagerBase sceneManager)
         {
@@ -40,6 +40,14 @@ namespace Common.Managers
             }
         }
 
+        public void OpenScene(string sceneName)
+        {
+            if (activeScenes.ContainsKey(sceneName))
+            {
+                activeScenes[sceneName].OnOpen();
+            }
+        }
+
         public void SwitchScene(string currentScene, string nextScene)
         {
             if (activeScenes.ContainsKey(currentScene))
@@ -49,6 +57,7 @@ namespace Common.Managers
 
             if (activeScenes.ContainsKey(nextScene))
             {
+                ;
                 activeScenes[nextScene].OnOpen();
             }
         }
@@ -79,44 +88,90 @@ namespace Common.Managers
             return loadedGroup.Contains(group);
         }
 
-        public IEnumerator LoadSceneGroup(SceneGroup group)
-        {
-            string[] sceneNames = null;
+        #region Handle Scene Group
 
-            switch (group)
+        public IEnumerator SwitchSceneGroup(SceneGroup currentGroup, SceneGroup nextGroup, string openSceneName)
+        {
+            if (!loadedGroup.Contains(nextGroup))
             {
-                case SceneGroup.HomeGroup:
-                    sceneNames = SceneName.HOME_GROUP;
-                    break;
-                case SceneGroup.TitleGroup:
-                    sceneNames = SceneName.TITLE_GROUP;
-                    break;
-                default:
-                    break;
+                yield return LoadSceneGroup(nextGroup);
             }
 
-            numberOfLoadedScene = 0;
-            numberOfScenesNeedToBeLoad = sceneNames.Length;
+            OpenScene(openSceneName);
+
+            if (loadedGroup.Contains(currentGroup))
+            {
+                yield return DisposeSceneGroup(currentGroup);
+            }
+        }
+
+        public IEnumerator LoadSceneGroup(SceneGroup group)
+        {
+            string[] sceneNames = GetSceneNames(group);
+
+            numberOfHandledScene = 0;
+            numberOfScenesToBeHandle = sceneNames.Length;
             loadingScenes = new Dictionary<AsyncOperation, string>();
+
+            loadedGroup.Add(group);
 
             foreach (var name in sceneNames)
             {
                 var asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
                 loadingScenes.Add(asyncOperation, name);
-                asyncOperation.completed += GroupSceneLoaded;
+                asyncOperation.completed += SceneHandleFinished;
             }
 
-            while (numberOfLoadedScene != numberOfScenesNeedToBeLoad)
+            while (numberOfHandledScene != numberOfScenesToBeHandle)
             {
                 yield return null;
             }
-
-            loadedGroup.Add(group);
         }
 
-        void GroupSceneLoaded(AsyncOperation asyncOperation)
+        public IEnumerator DisposeSceneGroup(SceneGroup group)
         {
-            numberOfLoadedScene += 1;
+            string[] sceneNames = GetSceneNames(group);
+
+            numberOfHandledScene = 0;
+            numberOfScenesToBeHandle = sceneNames.Length;
+            loadingScenes = new Dictionary<AsyncOperation, string>();
+
+            loadedGroup.Remove(group);
+
+            foreach (var name in sceneNames)
+            {
+                var asyncOperation = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(name);
+                loadingScenes.Add(asyncOperation, name);
+                asyncOperation.completed += SceneHandleFinished;
+
+                if (activeScenes.ContainsKey(name))
+                    activeScenes.Remove(name);
+            }
+
+            while (numberOfHandledScene != numberOfScenesToBeHandle)
+            {
+                yield return null;
+            }
         }
+
+        public string[] GetSceneNames(SceneGroup group)
+        {
+            switch (group)
+            {
+                case SceneGroup.HomeGroup:
+                    return SceneName.HOME_GROUP;
+                case SceneGroup.TitleGroup:
+                    return SceneName.TITLE_GROUP;
+                default:
+                    return null;
+            }
+        }
+
+        void SceneHandleFinished(AsyncOperation asyncOperation)
+        {
+            numberOfHandledScene += 1;
+        }
+
+        #endregion
     }
 }

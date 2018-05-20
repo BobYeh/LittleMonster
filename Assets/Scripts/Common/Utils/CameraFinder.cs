@@ -19,6 +19,11 @@ namespace Common.Utils
                 this._canvas.worldCamera = Camera.main;
                 Destroy(this.DisposeCamera.gameObject);
             }
+
+            if (Camera.main != null && this._canvas.worldCamera == null)
+            {
+                this._canvas.worldCamera = Camera.main;
+            }
         }
     }
 }

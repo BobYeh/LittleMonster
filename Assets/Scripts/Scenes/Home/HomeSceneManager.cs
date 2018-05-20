@@ -23,7 +23,7 @@ public class HomeSceneManager : SceneManagerBase
 
     public void OnClickedBackToTitleButton()
     {
-        SceneManager.Instance.SwitchScene(SceneName.HOME, SceneName.TITLE);
+        StartCoroutine(SceneManager.Instance.SwitchSceneGroup(SceneGroup.HomeGroup, SceneGroup.TitleGroup, SceneName.TITLE));
     }
 
     public void UpdatePlayerID()
