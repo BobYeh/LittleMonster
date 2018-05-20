@@ -36,15 +36,15 @@ public class HomeGroupPagesController : SingletonMonoBehaviour<HomeGroupPagesCon
             case "Home":
                 return SceneName.HOME;
             case "Battle":
-                return SceneName.HOME;
+                return SceneName.BATTLE_MAP;
             case "MonsterList":
-                return SceneName.MONSTER_LIST_SCENE;
+                return SceneName.MONSTER_LIST;
              case "ItemList":
-                return SceneName.HOME;
+                return SceneName.ITEM_LIST;
             case "Shop":
-                return SceneName.HOME;
+                return SceneName.SHOP;
             case "Option":
-                return SceneName.HOME;
+                return SceneName.OPTION;
             default:
                 return SceneName.HOME;
         }

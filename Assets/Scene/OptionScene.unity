@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 189967026}
   - component: {fileID: 189967029}
   m_Layer: 0
-  m_Name: MonsterListScene
+  m_Name: OptionScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 189967025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47fee9865a358c248b87c08644288a89, type: 3}
+  m_Script: {fileID: 11500000, guid: c8dc0ccfbd421524c8881594a673a19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   topCanvas: {fileID: 1232676835}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9400b85bd749f224b9836ce9d38cba8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: MonsterListScene
+  key: OptionScene
   sceneManager: {fileID: 189967026}
 --- !u!1 &703403701
 GameObject:
@@ -280,7 +280,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 930358729}
-  - {fileID: 2117774291}
+  - {fileID: 1884573070}
   m_Father: {fileID: 1232676836}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -412,7 +412,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5f3b794244627b84b8d2700f4e4428d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 460647d84d34c894f94e888e61ed9afd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -435,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232676836}
   m_Layer: 0
-  m_Name: MonsterListScene
+  m_Name: OptionScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,7 +456,7 @@ Transform:
   m_Father: {fileID: 189967027}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2117774290
+--- !u!1001 &1884573069
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -556,8 +556,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 474f15044f305ba49b6436016ba8df88, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &2117774291 stripped
+--- !u!224 &1884573070 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224642787303266804, guid: 474f15044f305ba49b6436016ba8df88,
     type: 2}
-  m_PrefabInternal: {fileID: 2117774290}
+  m_PrefabInternal: {fileID: 1884573069}
