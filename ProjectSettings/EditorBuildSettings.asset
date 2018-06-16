@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/OptionScene.unity
     guid: 6fce78accf1be684d82005a74729fc4f
+  - enabled: 1
+    path: Assets/Scene/MonsterScene.unity
+    guid: 45b89c201836a7f41aa20a21904348b0
+  - enabled: 1
+    path: Assets/Scene/PartyScene.unity
+    guid: 188da6d6a44ebde468796611600e55b0
   m_configObjects: {}

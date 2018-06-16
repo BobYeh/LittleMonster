@@ -14,7 +14,7 @@ namespace UnityEngine.UI
 
         private RadioButton currentSelectedButton;
 
-        private void Awake()
+        private void Start()
         {
             TrySelectedButton(defaultSelectedButton);
         }

@@ -23,6 +23,8 @@ namespace Common.Managers
         int numberOfScenesToBeHandle;
         int numberOfHandledScene;
 
+        string currentSceneName = "";
+
 
         public void AddActiveScene(string key, SceneManagerBase sceneManager)
         {
@@ -44,22 +46,25 @@ namespace Common.Managers
         {
             if (activeScenes.ContainsKey(sceneName))
             {
+                currentSceneName = sceneName;
                 activeScenes[sceneName].OnOpen();
             }
         }
 
-        public void SwitchScene(string currentScene, string nextScene)
+        public void CloseScene(string sceneName)
         {
-            if (activeScenes.ContainsKey(currentScene))
+            if (activeScenes.ContainsKey(sceneName))
             {
-                activeScenes[currentScene].OnClose();
+                activeScenes[sceneName].OnClose();
             }
+        }
 
-            if (activeScenes.ContainsKey(nextScene))
-            {
-                ;
-                activeScenes[nextScene].OnOpen();
-            }
+        public void SwitchScene(string nextScene)
+        {
+            CloseScene(currentSceneName);
+
+            if(currentSceneName != nextScene)
+                OpenScene(nextScene);
         }
 
         public void Replace(string name)

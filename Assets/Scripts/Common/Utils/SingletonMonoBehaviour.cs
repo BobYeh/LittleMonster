@@ -24,7 +24,7 @@ namespace Common.Utils
             }
         }
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             CheckInstance();
         }

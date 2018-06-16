@@ -12,8 +12,10 @@ public class HomeGroupPagesController : SingletonMonoBehaviour<HomeGroupPagesCon
 
     string currentSceneName = "";
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (radioButtonGroupController != null)
             radioButtonGroupController.selectedRadioButtonChangedHandler += OnRadioButtonChanged;
     }
@@ -22,11 +24,7 @@ public class HomeGroupPagesController : SingletonMonoBehaviour<HomeGroupPagesCon
     {
         string nextSceneName = GetSceneNameByKey(radioButtonKey);
 
-        if (currentSceneName != nextSceneName)
-        {
-            SceneManager.instance.SwitchScene(currentSceneName, nextSceneName);
-            currentSceneName = nextSceneName;
-        }
+        SceneManager.instance.SwitchScene(nextSceneName);
     }
 
     public string GetSceneNameByKey(string key)
@@ -37,8 +35,8 @@ public class HomeGroupPagesController : SingletonMonoBehaviour<HomeGroupPagesCon
                 return SceneName.HOME;
             case "Battle":
                 return SceneName.BATTLE_MAP;
-            case "MonsterList":
-                return SceneName.MONSTER_LIST;
+            case "Monster":
+                return SceneName.MONSTER;
              case "ItemList":
                 return SceneName.ITEM_LIST;
             case "Shop":
