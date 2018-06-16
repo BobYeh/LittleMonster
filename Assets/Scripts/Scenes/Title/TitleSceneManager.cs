@@ -54,9 +54,11 @@ public class TitleSceneManager : SceneManagerBase
     {
         yield return http.Post(API.RegisterAccount(), (request) =>
         {
+            Debug.Log(request.downloadHandler.text);
             var userData = JsonUtility.FromJson<UserEntity>(request.downloadHandler.text);
             playerId = userData.playerId;
             StartCoroutine(TryLogin(playerId));
+            request.Dispose();
         });
     }
 
@@ -66,8 +68,13 @@ public class TitleSceneManager : SceneManagerBase
         {
             if (request.downloadHandler.text == "Login Success")
             {
+                Debug.Log(request.GetResponseHeader(API.SET_COOKIE));
+                string session = request.GetResponseHeader(API.SET_COOKIE);
+                session = session.Substring(0, session.IndexOf(";")+1);
+                PlayerPrefs.SetString(API.COOKIE, session);
                 PlayerDataManager.Instance.SavePlayerId(playerId);
                 SwitchToHomeScene();
+                request.Dispose();
             }
         });
     }
