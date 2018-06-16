@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MonsterIcons
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 866da32e24e9ee14daba6ff7fd1ed8c6, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a9cbcc444d9b1af4dbffe848611fc023, type: 3}
+  - {fileID: 21300000, guid: dbdfcc85cd2074f4bb6badd4fac2608b, type: 3}
+  - {fileID: 21300000, guid: f5138916a1576b046aec68fd64b30c38, type: 3}
+  - {fileID: 21300000, guid: c41a38820544c304f9b7b61ad3191e75, type: 3}
+  - {fileID: 21300000, guid: 85900ff2458945d4790d89e31e0c66f1, type: 3}
+  - {fileID: 21300000, guid: 3e94fe1ce29df8542b2f70f33bc31038, type: 3}
+  - {fileID: 21300000, guid: 05f61699ea1b7654e81e16c8ad042a14, type: 3}
+  - {fileID: 21300000, guid: a14495334b529c54cae937572db6840f, type: 3}
+  - {fileID: 21300000, guid: 854d4bd3b4c12354c8d50a6b71c7ee31, type: 3}
+  - {fileID: 21300000, guid: fe2c350a6087c6e40bfa71fee1489e54, type: 3}
+  - {fileID: 21300000, guid: 5857f48499fa6874a9ec41c1f65d7821, type: 3}
+  - {fileID: 21300000, guid: 6b5451bae771c234ab90df3c7bff37d7, type: 3}
+  - {fileID: 21300000, guid: 4c9c3bc77bb9b124ab943e4cab9c01c4, type: 3}
+  - {fileID: 21300000, guid: 175cf85d97099df48b73738e90449654, type: 3}
+  - {fileID: 21300000, guid: 1f3a48427101a244da50890272e708c3, type: 3}
+  - {fileID: 21300000, guid: 7dcb93347462ce54dbf0868c57633992, type: 3}
+  - {fileID: 21300000, guid: 8c1978990e544864883582aa4c017f4c, type: 3}
+  - {fileID: 21300000, guid: fa7c912046a837c4988f662203c54609, type: 3}
+  - {fileID: 21300000, guid: 80b9fe7235d8c1443aa17f1ef7a792aa, type: 3}
+  - {fileID: 21300000, guid: 6fa48c04bc6c50647910aaf7f6ddf7fe, type: 3}
+  - {fileID: 21300000, guid: ad4f23998ae5829439a3054792aace6c, type: 3}
+  - {fileID: 21300000, guid: b13ae1ae504f58d45a0ceba87a492d2d, type: 3}
+  - {fileID: 21300000, guid: 6e35a9d445b33b644a29068e077122e0, type: 3}
+  - {fileID: 21300000, guid: 2361636163f7f5742958be6e252e7632, type: 3}
+  - {fileID: 21300000, guid: 2c1d69f6646b1a043bc1be29ac69248a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Monster_Icon_024
+  - Monster_Icon_025
+  - Monster_Icon_023
+  - Monster_Icon_008
+  - Monster_Icon_009
+  - Monster_Icon_019
+  - Monster_Icon_018
+  - Monster_Icon_001
+  - Monster_Icon_002
+  - Monster_Icon_003
+  - Monster_Icon_013
+  - Monster_Icon_004
+  - Monster_Icon_005
+  - Monster_Icon_011
+  - Monster_Icon_010
+  - Monster_Icon_007
+  - Monster_Icon_016
+  - Monster_Icon_015
+  - Monster_Icon_022
+  - Monster_Icon_017
+  - Monster_Icon_020
+  - Monster_Icon_021
+  - Monster_Icon_012
+  - Monster_Icon_006
+  - Monster_Icon_014
+  m_Tag: MonsterIcons
+  m_IsVariant: 0
