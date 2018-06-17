@@ -6,6 +6,9 @@ namespace Assets.Scripts.Monster
 {
     public class MonsterListView : MonoBehaviour
     {
+        public delegate void OnMonsterListViewItemSelected(MonsterListItemView view);
+        public OnMonsterListViewItemSelected ItemSelectedHandler;
+
         [SerializeField]
         Transform content;
 
@@ -13,10 +16,10 @@ namespace Assets.Scripts.Monster
 
         private void Awake()
         {
-            IntializeListView();
+            InitializeListView();
         }
 
-        public void IntializeListView()
+        public void InitializeListView()
         {
             if (MonsterDataManager.Instance.PlayerMonsterData.Count > 0)
             {
@@ -26,6 +29,7 @@ namespace Assets.Scripts.Monster
 
                     var itemView = GenertateMonsterListItemView();
                     itemView.UpdateItem(entity);
+                    itemView.ClickedHandler += OnClickedMonsterListItem;
                     monsterListItemViews.Add(entity.monsterId, itemView);
                 }
             }
@@ -36,6 +40,12 @@ namespace Assets.Scripts.Monster
             var prefab = Instantiate(Resources.Load<GameObject>(PrefabPath.MONSTER_LIST_ITEM_VIEW));
             prefab.transform.SetParent(content, false);
             return prefab.GetComponent<MonsterListItemView>();
+        }
+
+        public void OnClickedMonsterListItem(MonsterListItemView itemView)
+        {
+            if (ItemSelectedHandler != null)
+                ItemSelectedHandler(itemView);
         }
     }
 }

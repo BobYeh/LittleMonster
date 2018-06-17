@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Monster;
 
 public class PartyGroupManager : MonoBehaviour
 {
@@ -71,5 +72,10 @@ public class PartyGroupManager : MonoBehaviour
     void UpdatePartyName()
     {
         partyName.text = string.Format("Party{0}", currentPartyIndex + 1);
+    }
+
+    public void AddClickedPartyItemHandler(PartyView.OnPartyViewItemSelected handler)
+    {
+        currentPartyView.ItemSelectedHandler += handler;
     }
 }
