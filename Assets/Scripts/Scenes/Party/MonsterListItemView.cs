@@ -24,9 +24,10 @@ namespace Assets.Scripts.Monster
         
        public void UpdateItem(MonsterEntity entity)
         {
+            this.entity = entity;
+
             if (entity != null)
             {
-                this.entity = entity;
                 IconView.gameObject.SetActive(true);
                 IconView.UpdateView(entity.masterId);
             }
