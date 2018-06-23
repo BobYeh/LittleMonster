@@ -106,4 +106,20 @@ public class PartyView : MonoBehaviour
         //reset currentSelectedItem position
         currentSelectedPartyItemPosition = -1;
     }
+
+    public void TryRemovePartyMember()
+    {
+        if (currentSelectedPartyItemPosition != -1)
+        {
+            items[currentSelectedPartyItemPosition].UpdateItem(null);
+        }
+        else if (currentSelectedPartyItemPosition == -1)
+        {
+            var noneEmptyItem = items.Values.Where(item => item.Entity != null).LastOrDefault();
+            noneEmptyItem.UpdateItem(null);
+        }
+
+        //reset currentSelectedItem position
+        currentSelectedPartyItemPosition = -1;
+    }
 }

@@ -28,7 +28,6 @@ namespace Assets.Scripts.Monster
 
             if (entity != null)
             {
-                IconView.gameObject.SetActive(true);
                 IconView.UpdateView(entity.masterId);
             }
             else

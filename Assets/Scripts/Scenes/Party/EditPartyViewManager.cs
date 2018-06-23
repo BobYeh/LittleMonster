@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Monster;
 
-public class EditPartyViewManager : MonoBehaviour 
+public class EditPartyViewManager : MonoBehaviour
 {
     [SerializeField]
     PartyView partyView;
@@ -12,22 +12,22 @@ public class EditPartyViewManager : MonoBehaviour
 
     MonsterListItemView currentSelectedItemView;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
         monsterListView.ItemSelectedHandler += OnClickedMonsterListItem;
         partyView.ItemSelectedHandler += OnClickedPartyItem;
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-		
-	}
+
+    }
 
     public void OnClickedPartyItem(MonsterListItemView itemView)
     {
-        if(currentSelectedItemView != itemView)
+        if (currentSelectedItemView != itemView)
         {
             currentSelectedItemView = itemView;
         }
@@ -48,5 +48,10 @@ public class EditPartyViewManager : MonoBehaviour
         {
             currentSelectedItemView = null;
         }
+    }
+
+    public void OnClickedRemoveButton()
+    {
+        partyView.TryRemovePartyMember();
     }
 }

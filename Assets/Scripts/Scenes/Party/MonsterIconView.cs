@@ -13,6 +13,7 @@ namespace Assets.Scripts.Monster
             ResourceUtilities.Instance.LoadMonsterIcon(masterId, (sprite) =>
             {
                 icon.sprite = sprite;
+                gameObject.SetActive(true);
             });
         }
     }
