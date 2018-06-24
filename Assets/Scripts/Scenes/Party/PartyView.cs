@@ -54,6 +54,8 @@ public class PartyView : MonoBehaviour
 
         partyEntity = entity;
 
+        ResetSelectedItem();
+
         if (UpdatePartyMemberHandler != null)
             UpdatePartyMemberHandler();
     }
