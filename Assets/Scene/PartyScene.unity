@@ -768,6 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topCanvas: {fileID: 1232676835}
   animator: {fileID: 391426388}
+  editPartyViewManager: {fileID: 1158620744}
 --- !u!4 &189967027
 Transform:
   m_ObjectHideFlags: 0

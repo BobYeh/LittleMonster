@@ -10,6 +10,7 @@ public class PartyView : MonoBehaviour
     public OnPartyViewItemSelected ItemSelectedHandler;
 
     public Action ResetItemHandler;
+    public Action UpdatePartyMemberHandler;
 
     private PartyEntity partyEntity;
 
@@ -52,6 +53,9 @@ public class PartyView : MonoBehaviour
         }
 
         partyEntity = entity;
+
+        if (UpdatePartyMemberHandler != null)
+            UpdatePartyMemberHandler();
     }
 
     public void UpdatePartyView(int index, int monsterId)
@@ -104,6 +108,9 @@ public class PartyView : MonoBehaviour
                 ResetSelectedItem();
             }
         }
+
+        if (UpdatePartyMemberHandler != null)
+            UpdatePartyMemberHandler();
     }
 
     public bool IsEmpty
@@ -138,6 +145,9 @@ public class PartyView : MonoBehaviour
         }
 
         ResetSelectedItem();
+
+        if (UpdatePartyMemberHandler != null)
+            UpdatePartyMemberHandler();
     }
 
     public List<int> GetCurrentPartyMembers()

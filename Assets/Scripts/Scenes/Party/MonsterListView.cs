@@ -23,10 +23,10 @@ namespace Assets.Scripts.Monster
         {
             if (MonsterDataManager.Instance.PlayerMonsterData.Count > 0)
             {
+                monsterListItemViews = new Dictionary<int, MonsterListItemView>();
+
                 foreach (var entity in MonsterDataManager.Instance.PlayerMonsterData.Values)
                 {
-                    monsterListItemViews = new Dictionary<int, MonsterListItemView>();
-
                     var itemView = GenertateMonsterListItemView();
                     itemView.UpdateItem(entity);
                     itemView.ClickedHandler += OnClickedMonsterListItem;
@@ -46,6 +46,17 @@ namespace Assets.Scripts.Monster
         {
             if (ItemSelectedHandler != null)
                 ItemSelectedHandler(itemView);
+        }
+
+        public void UpdateSelectedMember(List<int> memberIds)
+        {
+            foreach (var itemView in monsterListItemViews.Values)
+            {
+                if (itemView.Entity != null && memberIds.Contains(itemView.Entity.monsterId))
+                    itemView.GetComponent<SelectedMarkView>().SetSelected(true);
+                else
+                    itemView.GetComponent<SelectedMarkView>().SetSelected(false);
+            }
         }
     }
 }

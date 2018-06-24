@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectedItemView : MonoBehaviour
+public class SelectedMarkView : MonoBehaviour
 {
     [SerializeField]
     GameObject selectedMark;

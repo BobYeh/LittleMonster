@@ -19,12 +19,18 @@ public class EditPartyViewManager : MonoBehaviour
         monsterListView.ItemSelectedHandler += OnClickedMonsterListItem;
         partyView.ItemSelectedHandler += OnClickedPartyItem;
         partyView.ResetItemHandler += OnResetItem;
+        partyView.UpdatePartyMemberHandler += OnUpdatePartyMember;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void OnOpen()
+    {
+        OnUpdatePartyMember();
     }
 
     public void OnClickedPartyItem(PartyItemView itemView)
@@ -36,14 +42,14 @@ public class EditPartyViewManager : MonoBehaviour
         else if (currentSelectePartyItemView != itemView)
         {
             if(currentSelectePartyItemView != null)
-                currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(false);
+                currentSelectePartyItemView.GetComponent<FocusMarkView>().SetFocus(false);
 
             currentSelectePartyItemView = itemView;
-            currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(true);
+            currentSelectePartyItemView.GetComponent<FocusMarkView>().SetFocus(true);
         }
         else
         {
-            currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectePartyItemView.GetComponent<FocusMarkView>().SetFocus(false);
             currentSelectePartyItemView = null;
         }
     }
@@ -53,15 +59,15 @@ public class EditPartyViewManager : MonoBehaviour
         if (currentSelectedMonsterListItemView != itemView)
         {
             if(currentSelectedMonsterListItemView != null)
-                currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(false);
+                currentSelectedMonsterListItemView.GetComponent<FocusMarkView>().SetFocus(false);
 
             currentSelectedMonsterListItemView = itemView;
-            currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(true);
+            currentSelectedMonsterListItemView.GetComponent<FocusMarkView>().SetFocus(true);
             partyView.TryAddPartyMember(itemView);
         }
         else
         {
-            currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectedMonsterListItemView.GetComponent<FocusMarkView>().SetFocus(false);
             currentSelectedMonsterListItemView = null;
         }
     }
@@ -70,13 +76,13 @@ public class EditPartyViewManager : MonoBehaviour
     {
         if (currentSelectedMonsterListItemView != null)
         {
-            currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectedMonsterListItemView.GetComponent<FocusMarkView>().SetFocus(false);
             currentSelectedMonsterListItemView = null;
         }
 
         if (currentSelectePartyItemView != null)
         {
-            currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectePartyItemView.GetComponent<FocusMarkView>().SetFocus(false);
             currentSelectePartyItemView = null;
         }
     }
@@ -84,5 +90,10 @@ public class EditPartyViewManager : MonoBehaviour
     public void OnClickedRemoveButton()
     {
         partyView.TryRemovePartyMember();
+    }
+
+    public void OnUpdatePartyMember()
+    {
+        monsterListView.UpdateSelectedMember(partyView.GetCurrentPartyMembers());
     }
 }

@@ -8,11 +8,14 @@ public class PartySceneManager : SceneManagerBase
 {
     [SerializeField]
     Animator animator;
+    [SerializeField]
+    EditPartyViewManager editPartyViewManager;
 
     public override void OnOpen()
     {
         base.OnOpen();
         animator.Play("OnOpenPartyScene");
+        editPartyViewManager.OnOpen();
     }
 
     public void OnClickedBackButton()
