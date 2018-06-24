@@ -25,7 +25,8 @@ public class PartyGroupManager : MonoBehaviour
 
     void Start()
     {
-        currentPartyIndex = 2;
+        if (PlayerPrefs.HasKey(ConstValue.PlayerPrefsKey.LAST_VIEWED_PARTYNUMBER))
+            currentPartyIndex = PlayerPrefs.GetInt(ConstValue.PlayerPrefsKey.LAST_VIEWED_PARTYNUMBER);
         currentPartyView.UpdatePartyView(PartyDataManager.Instance.AllPartyInfo[currentPartyIndex]);
         UpdatePartyName();
     }
@@ -49,6 +50,8 @@ public class PartyGroupManager : MonoBehaviour
 
         UpdatePartyName();
 
+        PlayerPrefs.SetInt(ConstValue.PlayerPrefsKey.LAST_VIEWED_PARTYNUMBER, currentPartyIndex);
+
         animator.Play("MoveToNextParty", 0, 0);
     }
 
@@ -70,6 +73,8 @@ public class PartyGroupManager : MonoBehaviour
         }
 
         UpdatePartyName();
+
+        PlayerPrefs.SetInt(ConstValue.PlayerPrefsKey.LAST_VIEWED_PARTYNUMBER, currentPartyIndex);
 
         animator.Play("MoveToPreviousParty", 0, 0);
     }
