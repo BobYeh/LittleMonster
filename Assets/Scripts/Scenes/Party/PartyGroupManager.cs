@@ -31,6 +31,8 @@ public class PartyGroupManager : MonoBehaviour
 
     public void OnClickedNextParty()
     {
+        PartyDataManager.Instance.UpdateParty(currentPartyIndex, currentPartyView.GetCurrentPartyMembers());
+
         if(currentPartyIndex < GameDefineData.NUMBER_OF_PARTY - 1)
         {
             currentPartyView.UpdatePartyView(PartyDataManager.Instance.AllPartyInfo[currentPartyIndex + 1]);
@@ -51,6 +53,8 @@ public class PartyGroupManager : MonoBehaviour
 
     public void OnClickedPreParty()
     {
+        PartyDataManager.Instance.UpdateParty(currentPartyIndex, currentPartyView.GetCurrentPartyMembers());
+
         if (currentPartyIndex > 0)
         {
             currentPartyView.UpdatePartyView(PartyDataManager.Instance.AllPartyInfo[currentPartyIndex - 1]);

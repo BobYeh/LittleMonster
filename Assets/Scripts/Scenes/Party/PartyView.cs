@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Monster;
+using System;
 
 public class PartyView : MonoBehaviour
 {
-    public delegate void OnPartyViewItemSelected(MonsterListItemView view);
+    public delegate void OnPartyViewItemSelected(PartyItemView view);
     public OnPartyViewItemSelected ItemSelectedHandler;
+
+    public Action ResetItemHandler;
 
     private PartyEntity partyEntity;
 
@@ -61,20 +64,17 @@ public class PartyView : MonoBehaviour
 
     public void OnClickedPartyItem(MonsterListItemView itemView)
     {
-        var itemPosition = itemView.GetComponent<PartyItemView>().Position;
+        var partyItem = itemView.GetComponent<PartyItemView>();
+        var itemPosition = partyItem.Position;
 
         if(currentSelectedPartyItemPosition != itemPosition)
         {
             currentSelectedPartyItemPosition = itemPosition;
         }
-        else
-        {
-            currentSelectedPartyItemPosition = -1;
-        }
 
         if (ItemSelectedHandler != null)
         {
-            ItemSelectedHandler(itemView);
+            ItemSelectedHandler(partyItem);
         }
     }
 
@@ -91,6 +91,7 @@ public class PartyView : MonoBehaviour
             }
 
             items[currentSelectedPartyItemPosition].UpdateItem(itemView.Entity);
+            ResetSelectedItem();
         }
         else if (currentSelectedPartyItemPosition == -1)
         {
@@ -100,11 +101,27 @@ public class PartyView : MonoBehaviour
             if (emptyItem != null && sameItem == null)
             {
                 emptyItem.UpdateItem(itemView.Entity);
+                ResetSelectedItem();
             }
         }
+    }
 
+    public bool IsEmpty
+    {
+        get
+        {
+            var emptyItem = items.Values.Where(item => item.Entity == null).FirstOrDefault();
+            return emptyItem != null;
+        }
+    }
+
+    public void ResetSelectedItem()
+    {
         //reset currentSelectedItem position
         currentSelectedPartyItemPosition = -1;
+
+        if (ResetItemHandler != null)
+            ResetItemHandler();
     }
 
     public void TryRemovePartyMember()
@@ -116,10 +133,22 @@ public class PartyView : MonoBehaviour
         else if (currentSelectedPartyItemPosition == -1)
         {
             var noneEmptyItem = items.Values.Where(item => item.Entity != null).LastOrDefault();
-            noneEmptyItem.UpdateItem(null);
+            if(noneEmptyItem != null)
+                noneEmptyItem.UpdateItem(null);
         }
 
-        //reset currentSelectedItem position
-        currentSelectedPartyItemPosition = -1;
+        ResetSelectedItem();
+    }
+
+    public List<int> GetCurrentPartyMembers()
+    {
+        List<int> partyMembers = new List<int>();
+
+        for (int i = 0; i < GameDefineData.NUMBER_OF_PARTY_MEMBER; i++)
+        {
+            partyMembers.Add(items[i].Entity == null ? 0 : items[i].Entity.monsterId);
+        }
+
+        return partyMembers;
     }
 }

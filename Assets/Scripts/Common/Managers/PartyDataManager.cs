@@ -20,6 +20,11 @@ public class PartyDataManager : SingletonMonoBehaviour<PartyDataManager>
         }
     }
 
+    public void UpdateParty(int index, List<int> memberMonsterIds)
+    {
+        allPartyInfo[index].MemberMonsterIds = memberMonsterIds;
+    }
+
     #region Dummy
     public void InitializeDummyData()
     {

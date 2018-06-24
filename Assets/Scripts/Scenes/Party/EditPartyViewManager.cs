@@ -10,13 +10,15 @@ public class EditPartyViewManager : MonoBehaviour
     [SerializeField]
     MonsterListView monsterListView;
 
-    MonsterListItemView currentSelectedItemView;
+    MonsterListItemView currentSelectedMonsterListItemView;
+    PartyItemView currentSelectePartyItemView;
 
     // Use this for initialization
     void Start()
     {
         monsterListView.ItemSelectedHandler += OnClickedMonsterListItem;
         partyView.ItemSelectedHandler += OnClickedPartyItem;
+        partyView.ResetItemHandler += OnResetItem;
     }
 
     // Update is called once per frame
@@ -25,28 +27,57 @@ public class EditPartyViewManager : MonoBehaviour
 
     }
 
-    public void OnClickedPartyItem(MonsterListItemView itemView)
+    public void OnClickedPartyItem(PartyItemView itemView)
     {
-        if (currentSelectedItemView != itemView)
+        if (currentSelectedMonsterListItemView != null)
         {
-            currentSelectedItemView = itemView;
+            partyView.TryAddPartyMember(currentSelectedMonsterListItemView);
+        }
+        else if (currentSelectePartyItemView != itemView)
+        {
+            if(currentSelectePartyItemView != null)
+                currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(false);
+
+            currentSelectePartyItemView = itemView;
+            currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(true);
         }
         else
         {
-            currentSelectedItemView = null;
+            currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectePartyItemView = null;
         }
     }
 
     public void OnClickedMonsterListItem(MonsterListItemView itemView)
     {
-        if (currentSelectedItemView != itemView)
+        if (currentSelectedMonsterListItemView != itemView)
         {
-            currentSelectedItemView = itemView;
+            if(currentSelectedMonsterListItemView != null)
+                currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(false);
+
+            currentSelectedMonsterListItemView = itemView;
+            currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(true);
             partyView.TryAddPartyMember(itemView);
         }
         else
         {
-            currentSelectedItemView = null;
+            currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectedMonsterListItemView = null;
+        }
+    }
+
+    public void OnResetItem()
+    {
+        if (currentSelectedMonsterListItemView != null)
+        {
+            currentSelectedMonsterListItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectedMonsterListItemView = null;
+        }
+
+        if (currentSelectePartyItemView != null)
+        {
+            currentSelectePartyItemView.GetComponent<SelectedItemView>().SetSelected(false);
+            currentSelectePartyItemView = null;
         }
     }
 
