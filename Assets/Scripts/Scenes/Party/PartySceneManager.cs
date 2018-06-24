@@ -18,6 +18,12 @@ public class PartySceneManager : SceneManagerBase
         editPartyViewManager.OnOpen();
     }
 
+    public override void OnClose()
+    {
+        editPartyViewManager.UpdateCurrentPartyDataToServer();
+        base.OnClose();
+    }
+
     public void OnClickedBackButton()
     {
         SceneManager.Instance.SwitchScene(SceneName.MONSTER);

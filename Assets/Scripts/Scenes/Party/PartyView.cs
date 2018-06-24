@@ -13,6 +13,13 @@ public class PartyView : MonoBehaviour
     public Action UpdatePartyMemberHandler;
 
     private PartyEntity partyEntity;
+    public PartyEntity PartyEntity
+    {
+        get
+        {
+            return partyEntity;
+        }
+    }
 
     Dictionary<int, MonsterListItemView> items = new Dictionary<int, MonsterListItemView>();
 

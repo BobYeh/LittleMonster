@@ -96,4 +96,9 @@ public class EditPartyViewManager : MonoBehaviour
     {
         monsterListView.UpdateSelectedMember(partyView.GetCurrentPartyMembers());
     }
+
+    public void UpdateCurrentPartyDataToServer()
+    {
+        PartyDataManager.Instance.UpdateParty(partyView.PartyEntity.PartyNumber - 1, partyView.GetCurrentPartyMembers());
+    }
 }
