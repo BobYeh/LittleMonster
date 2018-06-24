@@ -64,9 +64,21 @@ public class API
         return request;
     }
 
-    public static UnityWebRequest UpdatePlayerParty()
+    public static UnityWebRequest UpdatePlayerParty(PartyEntity partyData)
     {
         WWWForm form = new WWWForm();
+        form.AddField("partyNumber", partyData.PartyNumber);
+
+        for (int i = 0; i < GameDefineData.NUMBER_OF_PARTY_MEMBER; i++)
+        {
+            if (partyData.MemberMonsterIds[i] > 0)
+            {
+                form.AddField(string.Format("position{0}MonsterId", i), partyData.MemberMonsterIds[i]);
+                Debug.Log(string.Format("position{0}MonsterId: {1}", i, partyData.MemberMonsterIds[i]));
+            }
+        }
+
+        Debug.Log(string.Format("UpdatePlayerParty PartyNumber{0}", partyData.PartyNumber));
 
         var uri = host + APIName.UPDATE_PLAYER_PARTY;
 
