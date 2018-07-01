@@ -7,6 +7,7 @@ using MiniJSON;
 using System;
 using System.Reflection;
 using System.Linq;
+using MessagePack;
 
 public class MonsterSceneManager : SceneManagerBase
 {
@@ -33,7 +34,9 @@ public class MonsterSceneManager : SceneManagerBase
         yield return http.Post(API.GetPlayerMonsters(), (request) =>
         {
             Debug.Log("GetPlayerMonsters: " + request.downloadHandler.text);
-            var monsterData = JsonHelpers.GetObjectList<MonsterEntity>(request.downloadHandler.text);
+            //var monsterData = JsonHelpers.GetObjectList<MonsterEntity>(request.downloadHandler.text);
+            Debug.Log(request.downloadHandler.data.Length);
+            var monsterData = MessagePackSerializer.Deserialize<List<MonsterEntity>>(request.downloadHandler.data);
             MonsterDataManager.Instance.SetPlayerMonsterData(monsterData);
         });
     }
